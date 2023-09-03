@@ -1,0 +1,122 @@
+commit f72806a5c6900512e51c723428e45e991161e7d7
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Sep 3 11:30:01 2023 +1000
+
+    Spelling and grammer corrections.
+
+commit f2dc7221f21e20a9c971a06dc248a6cc66d91cdf
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Sep 3 10:30:30 2023 +1000
+
+    Sharing git log for submission
+
+commit c268a8cea65af3936b00558d873e820b25a5657c
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Sun Sep 3 10:04:41 2023 +1000
+
+    Update Software Design Document.docx
+
+commit db4b7b1710625fce9f17fb143be003ab92d8b541
+Merge: cc051f6 3e8b214
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Thu Aug 31 18:55:04 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit cc051f693cd5f7910359d19c6c8f30cac7cbc61b
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Thu Aug 31 18:54:53 2023 +1000
+
+    Update Software Design Document.docx
+
+commit 3e8b214558811497c78bf7572e99d147153c63db
+Merge: fc11ad3 184d0e8
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Thu Aug 31 15:32:39 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit fc11ad3ad4371774df55beab60c57c750bf512c0
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Thu Aug 31 15:31:28 2023 +1000
+
+    Minor editing and added intoductory paragraphs to WBS, Activity Definition and Gantt chart
+
+commit 184d0e874c36a1b9a3b844bcf1a0da2f1427fd27
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Fri Aug 25 18:43:33 2023 +1000
+
+    Update Software Design Document.docx
+
+commit 1667ba6933bde5ee691b53140c219c4a3e17facc
+Author: kamykazi1 <140568914+kamykazi1@users.noreply.github.com>
+Date:   Sun Aug 20 02:53:12 2023 +0000
+
+    Update README.md
+    
+    Changed wording of fifth data analysis parameter.
+
+commit eb359f797f4cfba66bcc395bf01a5da647c9b90f
+Merge: 21579f1 9281052
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Aug 20 12:50:31 2023 +1000
+
+    Added document contents section
+
+commit 21579f12a20741bafc192775ec4f2f1c7fdd247a
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Aug 20 11:17:26 2023 +1000
+
+    Added document contents section
+
+commit 9281052a103900630e23ec0a237590f73a574b3c
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Aug 17 13:17:53 2023 +1000
+
+    Added ReadME
+
+commit 854a0b322c6793be8851ad719fe1e2009f0d5585
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Aug 17 13:08:03 2023 +1000
+
+    Created the basic GUI, Just needs functionality
+
+commit c0f8b662070395897bf9e1755f441454766b6b11
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Aug 17 12:16:39 2023 +1000
+
+    Added Project files for the python GUI program. will be using tkinter for the GUI.
+
+commit 2da6a6b70724d155eee80e951253433efdab7d86
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Aug 10 11:12:02 2023 +1000
+
+    Add files via upload
+
+commit e5f41cb0729da88388f41136324cb611d89e5645
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Mon Aug 7 17:45:45 2023 +1000
+
+    Delete Copy of Gantt chart.xlsx
+    
+    Wrong Gantt Chart file
+
+commit 38d36aaca9a3cd49551ac61ccd087473f04d5398
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Mon Aug 7 17:44:28 2023 +1000
+
+    Gantt chart
+    
+    created the gantt chart for the project
+
+commit f7116aa8d674a05bf8a7f7d113b79bac074f2b40
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Mon Aug 7 13:32:21 2023 +1000
+
+    Initial assignment document templates added
+
+commit ccbb11142144eecef417a07a32fe809343813bc5
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Aug 3 11:16:43 2023 +1000
+
+    Initial commit
