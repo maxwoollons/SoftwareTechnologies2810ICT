@@ -122,8 +122,6 @@ def show_graph1():
     # For a user-selected period, display the information of all accidents that happened in the period.
     date1 = entry1.get()
     date2 = entry2.get()
-    print(date1)
-    print(date2)
 
     crash_data = pd.read_csv('data.csv')
     crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
@@ -138,17 +136,22 @@ def show_graph1():
     elif date1 == date2:
         crash_data = crash_data[crash_data['ACCIDENT_DATE'] == date1]
         plt.figure(figsize=(10,5))
-        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%')
-        plt.title('Types of Accidents')
+        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
+        plt.title('Types of Accidents between ' + date1 + ' and ' + date2)
         plt.ylabel('')
+        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['ACCIDENT_TYPE'].unique())
+        plt.tight_layout()
         plt.show()
     else:
+
         crash_data = crash_data[(crash_data['ACCIDENT_DATE'] >= date1) & (crash_data['ACCIDENT_DATE'] <= date2)]    
         plt.figure(figsize=(10,5))
         
-        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%')
-        plt.title('Types of Accidents')
+        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
+        plt.title('Types of Accidents between ' + date1 + ' and ' + date2)
         plt.ylabel('')
+        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['ACCIDENT_TYPE'].unique())
+        plt.tight_layout()
         plt.show()
         
 
