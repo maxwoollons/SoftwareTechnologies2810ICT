@@ -4,6 +4,16 @@ import seaborn as sns
 import tkinter as tk
 
 
+options = [
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019"  
+]
+
 root = tk.Tk()
 root.title("Data Visualization Project - Victoria Crash Data")
 root.geometry("800x500")
@@ -24,12 +34,14 @@ framebtn1.pack()
 
 button1 = tk.Button(framebtn1, text="Show Graph", command=lambda: show_graph1())
 button1.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-entry1 = tk.Entry(framebtn1)
-entry1.insert(0,"Start: yyyy (Min: 2013)")
-entry1.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-entry2 = tk.Entry(framebtn1)
-entry2.insert(0,"End: yyyy (Max: 2019)")
-entry2.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+entry1 = tk.StringVar()
+entry1.set("Start Year")
+drop = tk.OptionMenu(framebtn1, entry1, *options)
+drop.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+entry2 = tk.StringVar()
+entry2.set("End Year")
+drop2 = tk.OptionMenu(framebtn1, entry2, *options)
+drop2.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 
 
 
@@ -106,14 +118,39 @@ button7.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 
 
 def show_graph1():
+    # For a user-selected period, display the information of all accidents that happened in the period.
+    date1 = entry1.get()
+    date2 = entry2.get()
+    print(date1)
+    print(date2)
+
     crash_data = pd.read_csv('data.csv')
     crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
     crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
     crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
     crash_data["MALES"] = pd.to_numeric(crash_data["MALES"])
     crash_data["FEMALES"] = pd.to_numeric(crash_data["FEMALES"])
     sns.barplot(x="DAY_OF_WEEK",y="INJ_OR_FATAL",data=crash_data)
     plt.show()
+
+
+def show_graph2():
+    # For a user-selected period, produce a chart to show the number of accidents in each hour of the day (on average).
+    crash_data = pd.read_csv('data.csv')
+
+
+def show_graph3():
+    # For a user-selected period, retrieve all accidents caused by an accident type that contains a keyword (user entered), e.g. collision, pedestrian.
+    crash_data = pd.read_csv('data.csv')
+
+def show_graph4():
+    # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
+    crash_data = pd.read_csv('data.csv')
+
+def show_graph5():
+    # For a user-selected period, display the information of all accidents that occurred on a Victorian public holiday.
+    crash_data = pd.read_csv('data.csv')
 
 
 
