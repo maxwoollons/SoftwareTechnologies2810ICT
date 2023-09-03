@@ -2,6 +2,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
 import tkinter as tk
+from tkinter import messagebox
 
 
 options = [
@@ -131,8 +132,25 @@ def show_graph1():
     crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
     crash_data["MALES"] = pd.to_numeric(crash_data["MALES"])
     crash_data["FEMALES"] = pd.to_numeric(crash_data["FEMALES"])
-    sns.barplot(x="DAY_OF_WEEK",y="INJ_OR_FATAL",data=crash_data)
-    plt.show()
+    if date1 > date2:
+        print("Error")
+        messagebox.showinfo("Error", "Start date cannot be greater than end date")
+    elif date1 == date2:
+        crash_data = crash_data[crash_data['ACCIDENT_DATE'] == date1]
+        plt.figure(figsize=(10,5))
+        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%')
+        plt.title('Types of Accidents')
+        plt.ylabel('')
+        plt.show()
+    else:
+        crash_data = crash_data[(crash_data['ACCIDENT_DATE'] >= date1) & (crash_data['ACCIDENT_DATE'] <= date2)]    
+        plt.figure(figsize=(10,5))
+        
+        crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%')
+        plt.title('Types of Accidents')
+        plt.ylabel('')
+        plt.show()
+        
 
 
 def show_graph2():
