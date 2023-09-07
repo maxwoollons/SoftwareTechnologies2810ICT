@@ -1,7 +1,7 @@
 
 # SoftwareTechnologies2810ICT
 
-This Project is Part of the SoftwareTechnologies2810ICT Unit. Built with Tkinter for the GUI this project uses publicly avaliable road crash data to analyse with python.  
+This Project is Part of the SoftwareTechnologies2810ICT Unit. Built with Tkinter for the GUI this project uses publicly avaliable road crash data to analyse with python. With the application you are able to view and analyze crash data with the freedom of a very simple user interface.
 
 
 
