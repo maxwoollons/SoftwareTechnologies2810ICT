@@ -147,19 +147,20 @@ def show_graph1():
     # For a user-selected period, display the information of all accidents that happened in the period.
     date1 = entry1.get()
     date2 = entry2.get()
+    
 
     crash_data = pd.read_csv('data.csv')
     crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
     crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
     crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
     crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
-    crash_data["MALES"] = pd.to_numeric(crash_data["MALES"])
-    crash_data["FEMALES"] = pd.to_numeric(crash_data["FEMALES"])
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+
     if date1 > date2:
         print("Error")
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
     elif date1 == date2:
-        crash_data = crash_data[crash_data['ACCIDENT_DATE'] == date1]
+        crash_data = crash_data[crash_data['YEAR'] == int(date1)]
         plt.figure(figsize=(10,5))
         crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
         plt.title('Types of Accidents between ' + date1 + ' and ' + date2)
@@ -169,7 +170,7 @@ def show_graph1():
         plt.show()
     else:
 
-        crash_data = crash_data[(crash_data['ACCIDENT_DATE'] >= date1) & (crash_data['ACCIDENT_DATE'] <= date2)]    
+        crash_data = crash_data[(crash_data['YEAR'] >= int(date1)) & (crash_data['YEAR'] <= int(date2))]    
         plt.figure(figsize=(10,5))
         
         crash_data['ACCIDENT_TYPE'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
