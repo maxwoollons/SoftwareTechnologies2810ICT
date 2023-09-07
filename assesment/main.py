@@ -15,6 +15,13 @@ options = [
     "2019"  
 ]
 
+keywords = [
+    "Struck Pedestrian",
+    "Collision with a fixed object",
+    "Collision with vehicle",
+    "No collision and no object struck",
+]
+
 root = tk.Tk()
 root.title("Data Visualization Project - Victoria Crash Data")
 root.geometry("800x500")
@@ -81,14 +88,29 @@ graph3.pack()
 framebtn3 = tk.Frame(root)
 framebtn3.columnconfigure(0, weight=1)
 framebtn3.columnconfigure(1, weight=1)
+framebtn3.columnconfigure(2, weight=1)
+framebtn3.columnconfigure(3, weight=1)
+
 
 framebtn3.pack()
 
-button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph2())
+button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph3())
 button3.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-entry5 = tk.Entry(framebtn3)
-entry5.insert(0,"Keyword")
-entry5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+entry5 = tk.StringVar()
+entry5.set("Keyword")
+drop6 = tk.OptionMenu(framebtn3, entry5, *keywords)
+drop6.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+entry6 = tk.StringVar()
+entry6.set("Start Year")
+drop7 = tk.OptionMenu(framebtn3, entry6, *options)
+drop7.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+entry7 = tk.StringVar()
+entry7.set("End Year")
+drop7 = tk.OptionMenu(framebtn3, entry7, *options)
+drop7.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
+
+
+
 
 
 # Fourth Option
@@ -202,8 +224,43 @@ def show_graph2():
 
 
 def show_graph3():
-    # For a user-selected period, retrieve all accidents caused by an accident type that contains a keyword (user entered), e.g. collision, pedestrian.
     crash_data = pd.read_csv('data.csv')
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    date1 = entry6.get()
+    date2 = entry7.get()
+    keyword = entry5.get()
+
+    if date1 > date2:
+        print("Error")
+        messagebox.showinfo("Error", "Start date cannot be greater than end date")
+    elif date1 == date2:
+        crash_data = crash_data[crash_data['YEAR'] == int(date1)]
+        crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
+        plt.figure(figsize=(10,5))
+        crash_data['FATALITY'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
+        plt.title('Fatalities between ' + date1 + ' and ' + date2 + ' that contains the keyword ' + keyword)
+        plt.ylabel('Number of Fatalities')
+        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['FATALITY'].unique())
+        plt.tight_layout()
+        plt.show()
+
+        
+    else:
+        crash_data = crash_data[(crash_data['YEAR'] >= int(date1)) & (crash_data['YEAR'] <= int(date2))]   
+        crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
+        plt.figure(figsize=(10,5))
+        crash_data['FATALITY'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
+        plt.title('Fatalities between ' + date1 + ' and ' + date2 + ' that contains the keyword ' + keyword)
+        plt.ylabel('Number of Fatalities')
+        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['FATALITY'].unique())
+        plt.tight_layout()
+        plt.show()
+
+
 
 def show_graph4():
     # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
