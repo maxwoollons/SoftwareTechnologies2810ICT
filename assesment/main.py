@@ -60,17 +60,20 @@ framebtn2.columnconfigure(1, weight=1)
 framebtn2.columnconfigure(2, weight=1)
 framebtn2.pack()
 
-button2 = tk.Button(framebtn2, text="Show Graph", command=lambda: show_graph1())
+button2 = tk.Button(framebtn2, text="Show Graph", command=lambda: show_graph2())
 button2.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-entry3 = tk.Entry(framebtn2)
-entry3.insert(0,"Start: yyyy (Min: 2013)")
-entry3.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-entry4 = tk.Entry(framebtn2)
-entry4.insert(0,"End: yyyy (Max: 2019)")
-entry4.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+entry3 = tk.StringVar()
+entry3.set("Start Year")
+drop1 = tk.OptionMenu(framebtn2, entry3, *options)
+drop1.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+entry4 = tk.StringVar()
+entry4.set("End Year")
+drop5 = tk.OptionMenu(framebtn2, entry4, *options)
+drop5.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 
 
 # Third Option
+# (Drop down box)
 
 graph3 = tk.Label(root, text="Graph 3: All accidents caused by an accident type that contains a keyword", font=("Arial", 15))
 graph3.pack()
@@ -81,7 +84,7 @@ framebtn3.columnconfigure(1, weight=1)
 
 framebtn3.pack()
 
-button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph1())
+button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph2())
 button3.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry5 = tk.Entry(framebtn3)
 entry5.insert(0,"Keyword")
@@ -155,10 +158,47 @@ def show_graph1():
         plt.show()
         
 
-
 def show_graph2():
+    date1 = entry3.get()
+    date2 = entry4.get()
     # For a user-selected period, produce a chart to show the number of accidents in each hour of the day (on average).
     crash_data = pd.read_csv('data.csv')
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    if date1 > date2:
+        print("Error")
+        messagebox.showinfo("Error", "Start date cannot be greater than end date")
+    elif date1 == date2:
+        crash_data = crash_data[crash_data['YEAR'] == int(date1)]
+        crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+        crash_data["HOUR"] = crash_data["HOUR"].astype('int32')
+        plt.figure(figsize=(10,5))
+        plt.bar(crash_data['HOUR'].value_counts().index, crash_data['HOUR'].value_counts().values)
+        plt.title('Number of Accidents in each hour of the day between ' + date1 + ' and ' + date2)
+        plt.ylabel('Number of Accidents')
+        plt.xlabel('Hour of the day')
+        plt.xticks(rotation=0, ticks=crash_data['HOUR'].value_counts().index)
+        plt.tight_layout()
+        plt.show()
+        
+    else:
+        crash_data = crash_data[(crash_data['YEAR'] >= int(date1)) & (crash_data['YEAR'] <= int(date2))]   
+        crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+        crash_data["HOUR"] = crash_data["HOUR"].astype('int32')
+        plt.figure(figsize=(10,5))
+        plt.bar(crash_data['HOUR'].value_counts().index, crash_data['HOUR'].value_counts().values)
+        plt.title('Number of Accidents in each hour of the day between ' + date1 + ' and ' + date2)
+        plt.ylabel('Number of Accidents')
+        plt.xlabel('Hour of the day')
+        plt.xticks(rotation=0, ticks=crash_data['HOUR'].value_counts().index)
+        plt.tight_layout()
+        plt.show()
+
+
+   
 
 
 def show_graph3():
