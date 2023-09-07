@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 import tkinter as tk
 from tkinter import messagebox
+import numpy as np
 
 
 options = [
@@ -84,16 +85,12 @@ drop5.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 
 graph3 = tk.Label(root, text="Graph 3: All accidents caused by an accident type that contains a keyword", font=("Arial", 15))
 graph3.pack()
-
 framebtn3 = tk.Frame(root)
 framebtn3.columnconfigure(0, weight=1)
 framebtn3.columnconfigure(1, weight=1)
 framebtn3.columnconfigure(2, weight=1)
 framebtn3.columnconfigure(3, weight=1)
-
-
 framebtn3.pack()
-
 button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph3())
 button3.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry5 = tk.StringVar()
@@ -109,12 +106,7 @@ entry7.set("End Year")
 drop7 = tk.OptionMenu(framebtn3, entry7, *options)
 drop7.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
 
-
-
-
-
 # Fourth Option
-
 graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Arial", 15))
 graph4.pack()
 framebtn4 = tk.Frame(root)
@@ -122,17 +114,14 @@ framebtn4.columnconfigure(0, weight=1)
 framebtn4.columnconfigure(1, weight=1)
 framebtn4.columnconfigure(2, weight=1)
 framebtn4.pack()
-
-button4 = tk.Button(framebtn4, text="Show Graph 1", command=lambda: show_graph1())
+button4 = tk.Button(framebtn4, text="Show Graph 1", command=lambda: show_graph41())
 button4.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-button5 = tk.Button(framebtn4, text="Show Graph 2", command=lambda: show_graph1())
+button5 = tk.Button(framebtn4, text="Show Graph 2", command=lambda: show_graph42())
 button5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-button6 = tk.Button(framebtn4, text="Show Graph 3", command=lambda: show_graph1())
+button6 = tk.Button(framebtn4, text="Show Graph 3", command=lambda: show_graph43())
 button6.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
-
 graph5 = tk.Label(root, text="Graph 5: Information of all accidents that occurred on a Victorian public holiday", font=("Arial", 15))
 graph5.pack()
-
 
 # Fifth Option
 framebtn5 = tk.Frame(root)
@@ -141,14 +130,10 @@ framebtn5.pack()
 button7 = tk.Button(framebtn5, text="Show Graph", command=lambda: show_graph1())
 button7.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 
-
-
 def show_graph1():
     # For a user-selected period, display the information of all accidents that happened in the period.
     date1 = entry1.get()
     date2 = entry2.get()
-    
-
     crash_data = pd.read_csv('data.csv')
     crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
     crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
@@ -178,8 +163,7 @@ def show_graph1():
         plt.ylabel('')
         plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['ACCIDENT_TYPE'].unique())
         plt.tight_layout()
-        plt.show()
-        
+        plt.show()      
 
 def show_graph2():
     date1 = entry3.get()
@@ -220,10 +204,6 @@ def show_graph2():
         plt.tight_layout()
         plt.show()
 
-
-   
-
-
 def show_graph3():
     crash_data = pd.read_csv('data.csv')
     crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
@@ -234,7 +214,6 @@ def show_graph3():
     date1 = entry6.get()
     date2 = entry7.get()
     keyword = entry5.get()
-
     if date1 > date2:
         print("Error")
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
@@ -247,9 +226,7 @@ def show_graph3():
         plt.ylabel('Number of Fatalities')
         plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['FATALITY'].unique())
         plt.tight_layout()
-        plt.show()
-
-        
+        plt.show()   
     else:
         crash_data = crash_data[(crash_data['YEAR'] >= int(date1)) & (crash_data['YEAR'] <= int(date2))]   
         crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
@@ -262,10 +239,48 @@ def show_graph3():
         plt.show()
 
 
+# 4.1
+def show_graph41():
+    crash_data = pd.read_csv('data.csv')
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['YEAR'] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()
+    grouped_data = crash_data.groupby(['YEAR', 'ALCOHOL_RELATED'])['FATALITY'].mean().unstack(fill_value=0)
+    plt.figure(figsize=(10, 5))
+    num_years = len(grouped_data)
+    bar_width = 0.35
+    indices = np.arange(num_years)
+    plt.bar(
+        indices - bar_width/2,
+        grouped_data['yes'],
+        label='Alcohol Related',
+        width=bar_width,
+        alpha=0.7
+    )
+    plt.bar(
+        indices + bar_width/2,
+        grouped_data['no'],
+        label='Non-Alcohol Related',
+        width=bar_width,
+        alpha=0.7
+    )
+    plt.xticks(indices, grouped_data.index)
+    plt.title('Average Fatalities in Alcohol vs. Non-Alcohol Related Accidents between 2013 and 2019')
+    plt.ylabel('Average Fatalities')
+    plt.xlabel('Year')
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 
-def show_graph4():
+# 4.2
+def show_graph42():
     # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
     crash_data = pd.read_csv('data.csv')
+# 4.3
+def show_graph43():
+    # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
+    crash_data = pd.read_csv('data.csv')
+
 
 def show_graph5():
     # For a user-selected period, display the information of all accidents that occurred on a Victorian public holiday.
