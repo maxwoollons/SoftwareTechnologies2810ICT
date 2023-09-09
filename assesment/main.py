@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import messagebox
 import numpy as np
 
-
+# Data years we have available
 options = [
     "2013",
     "2014",
@@ -16,12 +16,17 @@ options = [
     "2019"  
 ]
 
+# Keywords for the third option
 keywords = [
     "Struck Pedestrian",
     "Collision with a fixed object",
     "Collision with vehicle",
     "No collision and no object struck",
 ]
+
+# Day-Month
+vicholidays = ['1-1','2-1','26-1','13-3','7-4','8-4','9-4','10-4','25-4','12-6','29-9','7-11','25-12','26-12']
+
 
 root = tk.Tk()
 root.title("Data Visualization Project - Victoria Crash Data")
@@ -114,11 +119,11 @@ framebtn4.columnconfigure(0, weight=1)
 framebtn4.columnconfigure(1, weight=1)
 framebtn4.columnconfigure(2, weight=1)
 framebtn4.pack()
-button4 = tk.Button(framebtn4, text="Show Graph 1", command=lambda: show_graph41())
+button4 = tk.Button(framebtn4, text="Graph 1", command=lambda: show_graph41())
 button4.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-button5 = tk.Button(framebtn4, text="Show Graph 2", command=lambda: show_graph42())
+button5 = tk.Button(framebtn4, text="Graph 2", command=lambda: show_graph42())
 button5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-button6 = tk.Button(framebtn4, text="Show Graph 3", command=lambda: show_graph43())
+button6 = tk.Button(framebtn4, text="Graph 3", command=lambda: show_graph43())
 button6.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 graph5 = tk.Label(root, text="Graph 5: Information of all accidents that occurred on a Victorian public holiday", font=("Arial", 15))
 graph5.pack()
@@ -127,8 +132,11 @@ graph5.pack()
 framebtn5 = tk.Frame(root)
 framebtn5.columnconfigure(0, weight=1)
 framebtn5.pack()
-button7 = tk.Button(framebtn5, text="Show Graph", command=lambda: show_graph1())
+
+button7 = tk.Button(framebtn5, text="Types of Accidents", command=lambda: show_graph5())
 button7.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+button8 = tk.Button(framebtn5, text="Alcohol Hourly Distrubution", command=lambda: show_graph52())
+button8.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 def show_graph1():
     # For a user-selected period, display the information of all accidents that happened in the period.
@@ -274,22 +282,118 @@ def show_graph41():
 
 # 4.2
 def show_graph42():
-    # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
-    crash_data = pd.read_csv('data.csv')
+    crash_data = pd.read_csv('data.csv')    
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()    
+    alcohol_related = crash_data[crash_data['ALCOHOL_RELATED'] == 'yes']
+    non_alcohol_related = crash_data[crash_data['ALCOHOL_RELATED'] == 'no']
+    sorted_alcohol_related = alcohol_related['HOUR'].value_counts().sort_index()
+    sorted_non_alcohol_related = non_alcohol_related['HOUR'].value_counts().sort_index()
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
+    plt.bar(sorted_alcohol_related.index, sorted_alcohol_related.values)
+    plt.title('Number of Alcohol-Related Accidents 2013-2019')
+    plt.ylabel('Number of Accidents')
+    plt.xlabel('Hour of the day')
+    plt.xticks(rotation=0)
+    plt.subplot(1, 2, 2)
+    plt.bar(sorted_non_alcohol_related.index, sorted_non_alcohol_related.values)
+    plt.title('Number of Non-Alcohol-Related Accidents 2013-2019')
+    plt.ylabel('Number of Accidents')
+    plt.xlabel('Hour of the day')
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.show()
+
 # 4.3
 def show_graph43():
-    # Allow the user to analyze the impact of alcohol in accidents – ie: trends over time, accident types involving alcohol, etc.
     crash_data = pd.read_csv('data.csv')
-
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()
+    crash_data['DAY_OF_WEEK'] = crash_data['ACCIDENT_DATE'].dt.dayofweek
+    crash_data['DAY_OF_WEEK'] = crash_data['DAY_OF_WEEK'].replace([0, 1, 2, 3, 4, 5, 6],['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+    alcohol_related = crash_data[crash_data['ALCOHOL_RELATED'] == 'yes']
+    non_alcohol_related = crash_data[crash_data['ALCOHOL_RELATED'] == 'no']
+    custom_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    sorted_alcohol_related = alcohol_related['DAY_OF_WEEK'].value_counts().reindex(custom_order)
+    sorted_non_alcohol_related = non_alcohol_related['DAY_OF_WEEK'].value_counts().reindex(custom_order)
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
+    sns.barplot(x=sorted_alcohol_related.index, y=sorted_alcohol_related.values, order=custom_order)
+    plt.title('Number of Alcohol-Related Accidents 2013-2019')
+    plt.ylabel('Number of Accidents')
+    plt.xlabel('Day of the week')
+    plt.xticks(rotation=45)
+    plt.subplot(1, 2, 2)
+    sns.barplot(x=sorted_non_alcohol_related.index, y=sorted_non_alcohol_related.values, order=custom_order)
+    plt.title('Number of Non-Alcohol-Related Accidents 2013-2019')
+    plt.ylabel('Number of Accidents')
+    plt.xlabel('Day of the week')
+    plt.xticks(rotation=45)  
+    plt.tight_layout()
+    plt.show()
 
 def show_graph5():
-    # For a user-selected period, display the information of all accidents that occurred on a Victorian public holiday.
     crash_data = pd.read_csv('data.csv')
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()
+    crash_data['On_Public_Holiday'] = crash_data['ACCIDENT_DATE'].dt.strftime('%d-%m').isin(vicholidays)
+    # holiday_counts = crash_data['On_Public_Holiday'].value_counts()
+    # plt.figure(figsize=(8, 6))
+    # holiday_counts.plot(kind='bar', rot=0)
+    # plt.title('Accidents on Victorian Public Holidays (All Available Data)')
+    # plt.xlabel('Public Holiday')
+    # plt.ylabel('Number of Accidents')
+    # plt.xticks([0, 1], ['Not on Public Holiday', 'On Public Holiday'])
+    holiday_accident_counts = crash_data.groupby(['On_Public_Holiday', 'ACCIDENT_TYPE'])['ACCIDENT_TYPE'].count().unstack().fillna(0)
+    total_accidents_holiday = holiday_accident_counts.loc[True].sum()
+    total_accidents_non_holiday = holiday_accident_counts.loc[False].sum()
+    holiday_accident_percentage = (holiday_accident_counts.loc[True] / total_accidents_holiday) * 100
+    non_holiday_accident_percentage = (holiday_accident_counts.loc[False] / total_accidents_non_holiday) * 100
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
+    plt.pie(holiday_accident_percentage, labels=holiday_accident_percentage.index, autopct='%1.1f%%', startangle=140)
+    plt.axis('equal')
+    plt.title('Accident Types on Public Holidays')
+    plt.subplot(1, 2, 2)
+    plt.pie(non_holiday_accident_percentage, labels=non_holiday_accident_percentage.index, autopct='%1.1f%%', startangle=140)
+    plt.axis('equal')
+    plt.title('Accident Types on Non-Holidays')
+    plt.tight_layout()
+    plt.show()
 
-
-
-
-
+def show_graph52():
+    crash_data = pd.read_csv('data.csv')
+    crash_data['ACCIDENT_DATE'] = pd.to_datetime(crash_data['ACCIDENT_DATE'], format='%d/%m/%Y')
+    crash_data['MONTH'] = crash_data['ACCIDENT_DATE'].dt.month
+    crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
+    crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
+    crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()
+    crash_data['On_Public_Holiday'] = crash_data['ACCIDENT_DATE'].dt.strftime('%d-%m').isin(vicholidays)
+    holiday_alcohol_related = crash_data[(crash_data['On_Public_Holiday'] == True) & (crash_data['ALCOHOL_RELATED'] == 'yes')]
+    holiday_alcohol_related['HOUR'] = holiday_alcohol_related['HOUR'].astype('int32')
+    holiday_alcohol_related = holiday_alcohol_related['HOUR'].value_counts().sort_index()
+    plt.figure(figsize=(10, 5))
+    plt.bar(holiday_alcohol_related.index, holiday_alcohol_related.values)
+    plt.title('Number of Alcohol-Related Accidents on Public Holidays 2013-2019')
+    plt.ylabel('Number of Accidents')
+    plt.xlabel('Hour of the day')
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.show()
 
 root.mainloop()
 
