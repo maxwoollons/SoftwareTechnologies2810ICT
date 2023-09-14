@@ -4,6 +4,7 @@ import seaborn as sns
 import tkinter as tk
 from tkinter import messagebox
 import numpy as np
+from tkinter import ttk
 
 # Data years we have available
 options = [
@@ -28,17 +29,21 @@ keywords = [
 vicholidays = ['1-1','2-1','26-1','13-3','7-4','8-4','9-4','10-4','25-4','12-6','29-9','7-11','25-12','26-12']
 
 
+
 root = tk.Tk()
 root.title("Data Visualization Project - Victoria Crash Data")
 root.geometry("800x500")
 root.iconbitmap("favicon.ico")
 
-label = tk.Label(root, text="Data Visualization", font=("Arial", 20))
+style = ttk.Style()
+style.theme_use('clam')
+
+label = tk.Label(root,font=("Comic Sans MS", 20), text="Data Visualization")
 label.pack()
 
 # First Option
 
-graph1 = tk.Label(root, text="Graph 1: Infomation on Crash over a period of time", font=("Arial", 15))
+graph1 = tk.Label(root, text="Graph 1: Infomation on Crash over a period of time", font=("Comic Sans MS", 15))
 graph1.pack()
 framebtn1 = tk.Frame(root)
 framebtn1.columnconfigure(0, weight=1)
@@ -46,16 +51,15 @@ framebtn1.columnconfigure(1, weight=1)
 framebtn1.columnconfigure(2, weight=1)
 framebtn1.pack()
 
-button1 = tk.Button(framebtn1, text="Show Graph", command=lambda: show_graph1())
-button1.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+button1 = ttk.Button(framebtn1, text="Show Graph", command=lambda: show_graph1())
+button1.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 entry1 = tk.StringVar()
-entry1.set("Start Year")
-drop = tk.OptionMenu(framebtn1, entry1, *options)
-drop.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+drop = ttk.OptionMenu(framebtn1, entry1,"Start Year", *options)
+drop.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry2 = tk.StringVar()
 entry2.set("End Year")
-drop2 = tk.OptionMenu(framebtn1, entry2, *options)
-drop2.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+drop2 = ttk.OptionMenu(framebtn1, entry2,"End Year", *options)
+drop2.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 
 
@@ -64,7 +68,7 @@ drop2.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 # Second Option
 
 
-graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Arial", 15))
+graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Comic Sans MS", 15))
 graph2.pack()
 
 framebtn2 = tk.Frame(root)
@@ -73,22 +77,20 @@ framebtn2.columnconfigure(1, weight=1)
 framebtn2.columnconfigure(2, weight=1)
 framebtn2.pack()
 
-button2 = tk.Button(framebtn2, text="Show Graph", command=lambda: show_graph2())
-button2.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+button2 = ttk.Button(framebtn2, text="Show Graph", command=lambda: show_graph2())
+button2.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 entry3 = tk.StringVar()
-entry3.set("Start Year")
-drop1 = tk.OptionMenu(framebtn2, entry3, *options)
-drop1.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+drop1 = ttk.OptionMenu(framebtn2, entry3,"Start Year", *options)
+drop1.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry4 = tk.StringVar()
-entry4.set("End Year")
-drop5 = tk.OptionMenu(framebtn2, entry4, *options)
-drop5.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+drop5 = ttk.OptionMenu(framebtn2, entry4,"End Year", *options)
+drop5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 
 # Third Option
 # (Drop down box)
 
-graph3 = tk.Label(root, text="Graph 3: All accidents caused by an accident type that contains a keyword", font=("Arial", 15))
+graph3 = tk.Label(root, text="Graph 3: All accidents caused by an accident type that contains a keyword", font=("Comic Sans MS", 15))
 graph3.pack()
 framebtn3 = tk.Frame(root)
 framebtn3.columnconfigure(0, weight=1)
@@ -96,36 +98,33 @@ framebtn3.columnconfigure(1, weight=1)
 framebtn3.columnconfigure(2, weight=1)
 framebtn3.columnconfigure(3, weight=1)
 framebtn3.pack()
-button3 = tk.Button(framebtn3, text="Show Graph", command=lambda: show_graph3())
-button3.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+button3 = ttk.Button(framebtn3, text="Show Graph", command=lambda: show_graph3())
+button3.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
 entry5 = tk.StringVar()
-entry5.set("Keyword")
-drop6 = tk.OptionMenu(framebtn3, entry5, *keywords)
-drop6.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+drop6 = ttk.OptionMenu(framebtn3, entry5,"Keyword", *keywords)
+drop6.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry6 = tk.StringVar()
-entry6.set("Start Year")
-drop7 = tk.OptionMenu(framebtn3, entry6, *options)
-drop7.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+drop7 = ttk.OptionMenu(framebtn3, entry6,"Start Year", *options)
+drop7.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 entry7 = tk.StringVar()
-entry7.set("End Year")
-drop7 = tk.OptionMenu(framebtn3, entry7, *options)
-drop7.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
+drop7 = ttk.OptionMenu(framebtn3, entry7,"End Year", *options)
+drop7.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 
 # Fourth Option
-graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Arial", 15))
+graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Comic Sans MS", 15))
 graph4.pack()
 framebtn4 = tk.Frame(root)
 framebtn4.columnconfigure(0, weight=1)
 framebtn4.columnconfigure(1, weight=1)
 framebtn4.columnconfigure(2, weight=1)
 framebtn4.pack()
-button4 = tk.Button(framebtn4, text="Graph 1", command=lambda: show_graph41())
+button4 = ttk.Button(framebtn4, text="Graph 1", command=lambda: show_graph41())
 button4.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-button5 = tk.Button(framebtn4, text="Graph 2", command=lambda: show_graph42())
+button5 = ttk.Button(framebtn4, text="Graph 2", command=lambda: show_graph42())
 button5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-button6 = tk.Button(framebtn4, text="Graph 3", command=lambda: show_graph43())
+button6 = ttk.Button(framebtn4, text="Graph 3", command=lambda: show_graph43())
 button6.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
-graph5 = tk.Label(root, text="Graph 5: Information of all accidents that occurred on a Victorian public holiday", font=("Arial", 15))
+graph5 = tk.Label(root, text="Graph 5: Information of all accidents that occurred on a Victorian public holiday", font=("Comic Sans MS", 15))
 graph5.pack()
 
 # Fifth Option
@@ -133,9 +132,9 @@ framebtn5 = tk.Frame(root)
 framebtn5.columnconfigure(0, weight=1)
 framebtn5.pack()
 
-button7 = tk.Button(framebtn5, text="Types of Accidents", command=lambda: show_graph5())
+button7 = ttk.Button(framebtn5, text="Types of Accidents", command=lambda: show_graph5())
 button7.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-button8 = tk.Button(framebtn5, text="Alcohol Hourly Distrubution", command=lambda: show_graph52())
+button8 = ttk.Button(framebtn5, text="Alcohol Hourly Distrubution", command=lambda: show_graph52())
 button8.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 def show_graph1():
@@ -225,6 +224,9 @@ def show_graph3():
     if date1 > date2:
         print("Error")
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
+    elif keyword == "Keyword":
+        print("Error")
+        messagebox.showinfo("Error", "Please select a keyword")
     elif date1 == date2:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
         crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
@@ -328,13 +330,13 @@ def show_graph43():
     plt.figure(figsize=(12, 6))
     plt.subplot(1, 2, 1)
     sns.barplot(x=sorted_alcohol_related.index, y=sorted_alcohol_related.values, order=custom_order)
-    plt.title('Number of Alcohol-Related Accidents 2013-2019')
+    plt.title('Number of Alcohol-Related Accidents (All Data)')
     plt.ylabel('Number of Accidents')
     plt.xlabel('Day of the week')
     plt.xticks(rotation=45)
     plt.subplot(1, 2, 2)
     sns.barplot(x=sorted_non_alcohol_related.index, y=sorted_non_alcohol_related.values, order=custom_order)
-    plt.title('Number of Non-Alcohol-Related Accidents 2013-2019')
+    plt.title('Number of Non-Alcohol-Related Accidents (All Data)')
     plt.ylabel('Number of Accidents')
     plt.xlabel('Day of the week')
     plt.xticks(rotation=45)  
@@ -350,13 +352,6 @@ def show_graph5():
     crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
     crash_data['ALCOHOL_RELATED'] = crash_data['ALCOHOL_RELATED'].str.lower()
     crash_data['On_Public_Holiday'] = crash_data['ACCIDENT_DATE'].dt.strftime('%d-%m').isin(vicholidays)
-    # holiday_counts = crash_data['On_Public_Holiday'].value_counts()
-    # plt.figure(figsize=(8, 6))
-    # holiday_counts.plot(kind='bar', rot=0)
-    # plt.title('Accidents on Victorian Public Holidays (All Available Data)')
-    # plt.xlabel('Public Holiday')
-    # plt.ylabel('Number of Accidents')
-    # plt.xticks([0, 1], ['Not on Public Holiday', 'On Public Holiday'])
     holiday_accident_counts = crash_data.groupby(['On_Public_Holiday', 'ACCIDENT_TYPE'])['ACCIDENT_TYPE'].count().unstack().fillna(0)
     total_accidents_holiday = holiday_accident_counts.loc[True].sum()
     total_accidents_non_holiday = holiday_accident_counts.loc[False].sum()
@@ -366,11 +361,11 @@ def show_graph5():
     plt.subplot(1, 2, 1)
     plt.pie(holiday_accident_percentage, labels=holiday_accident_percentage.index, autopct='%1.1f%%', startangle=140)
     plt.axis('equal')
-    plt.title('Accident Types on Public Holidays')
+    plt.title('Accident Types on Public Holidays (All Data)')
     plt.subplot(1, 2, 2)
     plt.pie(non_holiday_accident_percentage, labels=non_holiday_accident_percentage.index, autopct='%1.1f%%', startangle=140)
     plt.axis('equal')
-    plt.title('Accident Types on Non-Holidays')
+    plt.title('Accident Types on Non-Holidays (All Data)')
     plt.tight_layout()
     plt.show()
 
