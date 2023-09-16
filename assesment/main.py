@@ -33,13 +33,16 @@ vicholidays = ['1-1','2-1','26-1','13-3','7-4','8-4','9-4','10-4','25-4','12-6',
 root = tk.Tk()
 root.title("Data Visualization Project - Victoria Crash Data")
 root.geometry("800x500")
-root.iconbitmap("favicon.ico")
+root.iconbitmap("logo.ico")
 
 style = ttk.Style()
 style.theme_use('clam')
 
 label = tk.Label(root,font=("Comic Sans MS", 20), text="Data Visualization")
+# image = tk.PhotoImage(file="logo.png")
 label.pack()
+# label.config(image=image,compound='right')
+
 
 # First Option
 
@@ -104,11 +107,8 @@ entry5 = tk.StringVar()
 drop6 = ttk.OptionMenu(framebtn3, entry5,"Keyword", *keywords)
 drop6.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry6 = tk.StringVar()
-drop7 = ttk.OptionMenu(framebtn3, entry6,"Start Year", *options)
+drop7 = ttk.OptionMenu(framebtn3, entry6,"Select Year", *options)
 drop7.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-entry7 = tk.StringVar()
-drop7 = ttk.OptionMenu(framebtn3, entry7,"End Year", *options)
-drop7.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 
 # Fourth Option
 graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Comic Sans MS", 15))
@@ -219,32 +219,23 @@ def show_graph3():
     crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
     crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
     date1 = entry6.get()
-    date2 = entry7.get()
+    # date2 = entry7.get()
     keyword = entry5.get()
-    if date1 > date2:
+    if date1 == "Select Year":
         print("Error")
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
     elif keyword == "Keyword":
         print("Error")
         messagebox.showinfo("Error", "Please select a keyword")
-    elif date1 == date2:
+    else:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
         crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
         plt.figure(figsize=(10,5))
-        crash_data['FATALITY'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
-        plt.title('Fatalities between ' + date1 + ' and ' + date2 + ' that contains the keyword ' + keyword)
-        plt.ylabel('Number of Fatalities')
-        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['FATALITY'].unique())
-        plt.tight_layout()
-        plt.show()   
-    else:
-        crash_data = crash_data[(crash_data['YEAR'] >= int(date1)) & (crash_data['YEAR'] <= int(date2))]   
-        crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
-        plt.figure(figsize=(10,5))
-        crash_data['FATALITY'].value_counts().plot(kind='pie',autopct='%1.1f%%', labels=None)
-        plt.title('Fatalities between ' + date1 + ' and ' + date2 + ' that contains the keyword ' + keyword)
-        plt.ylabel('Number of Fatalities')
-        plt.legend(loc='upper left', bbox_to_anchor=(-0.6, 0.6), labels=crash_data['FATALITY'].unique())
+        crash_data['MONTH'].value_counts().sort_index().plot(kind='bar')
+        plt.title('Number of Accidents caused by ' + keyword + ' in ' + date1)
+        plt.ylabel('Number of Accidents')
+        plt.xlabel('Month')
+        plt.xticks(rotation=0, ticks=crash_data['MONTH'].value_counts().sort_index().index)
         plt.tight_layout()
         plt.show()
 
