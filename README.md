@@ -34,7 +34,7 @@ To run the application, follow these steps:
 
 **Client:** Python, Tkinter
 
-**Packages:** Pandas, Tkinter, MatPlotLib, SeaBorn
+**Packages:** Pandas, Tkinter, MatPlotLib, SeaBorn, PyInstaller
 
 
 ## Authors
