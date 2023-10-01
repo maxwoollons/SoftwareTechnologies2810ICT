@@ -72,7 +72,6 @@ drop2.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 # Second Option
 
-
 graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Comic Sans MS", 15))
 graph2.pack()
 
@@ -425,7 +424,6 @@ def show_graph52():
     bottomframe.chart_type = chart_type
 
 #Coverage Testing Code
-
 entry1 = tk.StringVar(framebtn1, "2014")
 entry2 = tk.StringVar(framebtn1, "2014")
 show_graph1()
