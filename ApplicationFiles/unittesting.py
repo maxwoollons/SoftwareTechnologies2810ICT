@@ -43,7 +43,6 @@ def test_date_function3():
 def test_date_function4():
     assert date_function(2014,2018) == '<'
 
-
 # Test 5
 def test_date_function5():
     assert date_function(2014,2015) == '<'
