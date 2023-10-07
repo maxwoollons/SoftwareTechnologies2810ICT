@@ -20,19 +20,6 @@ options = [
     "2019"  
 ]
 
-# Keywords for the third option
-keywords = [
-    'struck pedestrian', 
-    'collision with vehicle',
-    'collision with a fixed object', 
-    'no collision and no object struck',
-    'struck animal', 
-    'vehicle overturned (no collision)',
-    'collision with some other object', 
-    'fall from or in moving vehicle',
-    'other accident'
-]
-
 # Day-Month
 vicholidays = ['1-1','2-1','26-1','13-3','7-4','8-4','9-4','10-4','25-4','12-6','29-9','7-11','25-12','26-12']
 
@@ -116,7 +103,7 @@ entry5 = tk.StringVar()
 
 # This needs to be an entry box
 drop6 = ttk.Entry(framebtn3, textvariable=entry5, width=30)
-drop6.insert(0, "Keyword")
+drop6.insert(0, "")
 drop6.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry6 = tk.StringVar()
 
@@ -261,22 +248,18 @@ def show_graph3():
     # date2 = entry7.get()
     keyword = entry5.get()
     keyword = keyword.lower()
-    if keyword not in keywords:
+    if date1 == "Select Year":
         print("Error")
-        messagebox.showinfo("Error", "Please select a valid keyword")
+        messagebox.showinfo("Error", "Please Select a year")
     else:
-        if date1 == "Select Year":
-            print("Error")
-            messagebox.showinfo("Error", "Please Select a year")
-        elif keyword == "Keyword":
-            print("Error")
-            messagebox.showinfo("Error", "Please select a keyword")
+        crash_data = crash_data[crash_data['YEAR'] == int(date1)]
+        crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
+        if crash_data.empty:
+            messagebox.showinfo("Error", "No results, please try again")
         else:
-            crash_data = crash_data[crash_data['YEAR'] == int(date1)]
-            crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
             fig, ax = plt.subplots(figsize=(10, 5))
             crash_data['MONTH'].value_counts().sort_index().plot(kind='bar')
-            ax.set_title('Number of Accidents caused by ' + keyword + ' in ' + date1)
+            ax.set_title('Number of Accidents containing the word \"' + keyword + '\" in ' + date1)
             ax.set_ylabel('Number of Accidents')
             ax.set_xlabel('Month')
             ax.set_xticks(ticks=crash_data['MONTH'].value_counts().sort_index().index)
