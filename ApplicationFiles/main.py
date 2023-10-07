@@ -248,6 +248,28 @@ def show_graph3():
     # date2 = entry7.get()
     keyword = entry5.get()
     keyword = keyword.lower()
+    # shortcuts
+    if keyword == "pedestrian":
+        keyword = "struck pedestrian"
+    elif keyword == "vehicle":
+        keyword = "collision with vehicle"
+    elif keyword == "animal":
+        keyword = "struck animal"
+    elif keyword == "other":
+        keyword = "other accident"
+    elif keyword == "fall":
+        keyword = "fall from or in moving vehicle"
+    elif keyword == "object":
+        keyword = "collision with a fixed object"
+    elif keyword == "overturned":
+        keyword = "vehicle overturned (no collision)"
+    elif keyword == "vehicle overturned":
+        keyword = "vehicle overturned (no collision)"
+    elif keyword == "other object":
+        keyword = "collision with some other object"
+    elif keyword == "no collision":
+        keyword = "no collision and no object struck"
+        
     if date1 == "Select Year":
         print("Error")
         messagebox.showinfo("Error", "Please Select a year")
