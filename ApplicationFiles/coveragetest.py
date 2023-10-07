@@ -1,6 +1,5 @@
 # Must install coverage
 # This tests the coverage of the code from main as of 01/10/23
-
 import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
@@ -29,6 +28,8 @@ keywords = [
     "Collision with a fixed object",
     "Collision with vehicle",
     "No collision and no object struck",
+    "Fall from or in moving vehicle",
+    "Struck animal"
 ]
 
 # Day-Month
@@ -71,6 +72,7 @@ drop2 = ttk.OptionMenu(framebtn1, entry2, "End Year", *options)
 drop2.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 # Second Option
+
 
 graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Comic Sans MS", 15))
 graph2.pack()
@@ -422,6 +424,7 @@ def show_graph52():
     chart_type = FigureCanvasTkAgg(fig, bottomframe)
     chart_type.get_tk_widget().grid(row=0, column=0, sticky="ew", padx=5, pady=5)
     bottomframe.chart_type = chart_type
+
 
 #Coverage Testing Code
 entry1 = tk.StringVar(framebtn1, "2014")
