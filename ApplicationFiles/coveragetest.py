@@ -5,9 +5,9 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 import tkinter as tk
 from tkinter import messagebox
+import time
 import numpy as np
 from tkinter import ttk
-import time
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
@@ -23,16 +23,6 @@ options = [
     "2019"
 ]
 
-# Keywords for the third option
-keywords = [
-    "Struck Pedestrian",
-    "Collision with a fixed object",
-    "Collision with vehicle",
-    "No collision and no object struck",
-    "Fall from or in moving vehicle",
-    "Struck animal"
-]
-
 # Day-Month
 vicholidays = ['1-1', '2-1', '26-1', '13-3', '7-4', '8-4', '9-4', '10-4', '25-4', '12-6', '29-9', '7-11', '25-12',
                '26-12']
@@ -46,7 +36,7 @@ root.iconbitmap("logo.ico")
 style = ttk.Style()
 style.theme_use('clam')
 
-label = tk.Label(root, font=("Comic Sans MS", 20), text="Data Visualization")
+label = tk.Label(root, font=("Helvetica", 20), text="Data Visualization")
 # image = tk.PhotoImage(file="logo.png")
 label.pack()
 # label.config(image=image,compound='right')
@@ -54,7 +44,7 @@ label.pack()
 
 # First Option
 
-graph1 = tk.Label(root, text="Graph 1: Infomation on Crash over a period of time", font=("Comic Sans MS", 15))
+graph1 = tk.Label(root, text="Graph 1: Infomation on Crash over a period of time", font=("Helvetica", 15))
 graph1.pack()
 framebtn1 = tk.Frame(root)
 framebtn1.columnconfigure(0, weight=1)
@@ -75,7 +65,7 @@ drop2.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 # Second Option
 
 
-graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Comic Sans MS", 15))
+graph2 = tk.Label(root, text="Graph 2: Number of accidents in each hour of the day", font=("Helvetica", 15))
 graph2.pack()
 
 framebtn2 = tk.Frame(root)
@@ -96,7 +86,7 @@ drop5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 # (Drop down box)
 
 graph3 = tk.Label(root, text="Graph 3: All accidents caused by an accident type that contains a keyword",
-                  font=("Comic Sans MS", 15))
+                  font=("Helvetica", 15))
 graph3.pack()
 framebtn3 = tk.Frame(root)
 framebtn3.columnconfigure(0, weight=1)
@@ -107,14 +97,18 @@ framebtn3.pack()
 button3 = ttk.Button(framebtn3, text="Show Graph", command=lambda: show_graph3())
 button3.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
 entry5 = tk.StringVar()
-drop6 = ttk.OptionMenu(framebtn3, entry5, "Keyword", *keywords)
+
+# This needs to be an entry box
+drop6 = ttk.Entry(framebtn3, textvariable=entry5, width=30)
+drop6.insert(0, "")
 drop6.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 entry6 = tk.StringVar()
+
 drop7 = ttk.OptionMenu(framebtn3, entry6, "Select Year", *options)
 drop7.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
 # Fourth Option
-graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Comic Sans MS", 15))
+graph4 = tk.Label(root, text="Graph 4: Alcohol Impact in accidents", font=("Helvetica", 15))
 graph4.pack()
 framebtn4 = tk.Frame(root)
 framebtn4.columnconfigure(0, weight=1)
@@ -128,7 +122,7 @@ button5.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 button6 = ttk.Button(framebtn4, text="Graph 3", command=lambda: show_graph43())
 button6.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
 graph5 = tk.Label(root, text="Graph 5: Information of all accidents that occurred on a Victorian public holiday",
-                  font=("Comic Sans MS", 15))
+                  font=("Helvetica", 15))
 graph5.pack()
 
 # Fifth Option
@@ -160,7 +154,7 @@ def show_graph1():
     crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
 
     if date1 > date2:
-        print("Error")
+
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
     elif date1 == date2:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
@@ -202,7 +196,6 @@ def show_graph2():
     crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
     crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
     if date1 > date2:
-        print("Error")
         messagebox.showinfo("Error", "Start date cannot be greater than end date")
     elif date1 == date2:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
@@ -247,29 +240,52 @@ def show_graph3():
     crash_data['DAY'] = crash_data['ACCIDENT_DATE'].dt.day
     crash_data["HOUR"] = crash_data['ACCIDENT_TIME'].str[:2]
     crash_data["YEAR"] = crash_data['ACCIDENT_DATE'].dt.year
+    crash_data['ACCIDENT_TYPE'] = crash_data['ACCIDENT_TYPE'].str.lower()
     date1 = entry6.get()
     # date2 = entry7.get()
     keyword = entry5.get()
+    keyword = keyword.lower()
+    # shortcuts
+    if keyword == "pedestrian":
+        keyword = "struck pedestrian" # pragma: no cover
+    elif keyword == "vehicle":
+        keyword = "collision with vehicle"# pragma: no cover
+    elif keyword == "animal":
+        keyword = "struck animal"# pragma: no cover
+    elif keyword == "other":
+        keyword = "other accident"# pragma: no cover
+    elif keyword == "fall":
+        keyword = "fall from or in moving vehicle"# pragma: no cover
+    elif keyword == "object":
+        keyword = "collision with a fixed object"# pragma: no cover
+    elif keyword == "overturned":
+        keyword = "vehicle overturned (no collision)"# pragma: no cover
+    elif keyword == "vehicle overturned":
+        keyword = "vehicle overturned (no collision)"# pragma: no cover
+    elif keyword == "other object":
+        keyword = "collision with some other object"# pragma: no cover
+    elif keyword == "no collision":
+        keyword = "no collision and no object struck"
+
     if date1 == "Select Year":
-        print("Error")# pragma: no cover
-        messagebox.showinfo("Error", "Please Select a year")# pragma: no cover
-    elif keyword == "Keyword":
-        print("Error")# pragma: no cover
-        messagebox.showinfo("Error", "Please select a keyword")# pragma: no cover
+        messagebox.showinfo("Error", "Please Select a year") # pragma: no cover
     else:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
         crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
-        fig, ax = plt.subplots(figsize=(10, 5))
-        crash_data['MONTH'].value_counts().sort_index().plot(kind='bar')
-        ax.set_title('Number of Accidents caused by ' + keyword + ' in ' + date1)
-        ax.set_ylabel('Number of Accidents')
-        ax.set_xlabel('Month')
-        ax.set_xticks(ticks=crash_data['MONTH'].value_counts().sort_index().index)
-        if hasattr(bottomframe, 'chart_type'):
-            bottomframe.chart_type.get_tk_widget().destroy()
-        chart_type = FigureCanvasTkAgg(fig, bottomframe)
-        chart_type.get_tk_widget().grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-        bottomframe.chart_type = chart_type
+        if crash_data.empty:
+            messagebox.showinfo("Error", "No results, please try again")# pragma: no cover
+        else:
+            fig, ax = plt.subplots(figsize=(10, 5))
+            crash_data['MONTH'].value_counts().sort_index().plot(kind='bar')
+            ax.set_title('Number of Accidents containing the word \"' + keyword + '\" in ' + date1)
+            ax.set_ylabel('Number of Accidents')
+            ax.set_xlabel('Month')
+            ax.set_xticks(ticks=crash_data['MONTH'].value_counts().sort_index().index)
+            if hasattr(bottomframe, 'chart_type'):
+                bottomframe.chart_type.get_tk_widget().destroy()
+            chart_type = FigureCanvasTkAgg(fig, bottomframe)
+            chart_type.get_tk_widget().grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+            bottomframe.chart_type = chart_type
 
 
 # 4.1
@@ -427,6 +443,7 @@ def show_graph52():
     bottomframe.chart_type = chart_type
 
 
+
 #Coverage Testing Code
 entry1 = tk.StringVar(framebtn1, "2014")
 entry2 = tk.StringVar(framebtn1, "2014")
@@ -445,7 +462,7 @@ entry1 = tk.StringVar(framebtn1, "2015")
 entry2 = tk.StringVar(framebtn1, "2014")
 show_graph1()
 
-time.sleep(5)
+time.sleep(3)
 entry3 = tk.StringVar(framebtn2, "2015")
 entry4 = tk.StringVar(framebtn2, "2014")
 show_graph2()
@@ -455,15 +472,15 @@ entry3 = tk.StringVar(framebtn2, "2014")
 entry4 = tk.StringVar(framebtn2, "2014")
 show_graph2()
 
+
 entry3 = tk.StringVar(framebtn2, "2014")
 entry4 = tk.StringVar(framebtn2, "2015")
 show_graph2()
 
 
-entry5 = tk.StringVar(framebtn3, keywords[0])
+entry5 = tk.StringVar(framebtn3, "no collision")
 entry6 = tk.StringVar(framebtn3, options[1])
 show_graph3()
-
 
 show_graph41()
 show_graph42()
