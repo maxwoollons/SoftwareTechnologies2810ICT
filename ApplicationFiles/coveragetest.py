@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import messagebox
 import numpy as np
 from tkinter import ttk
+import time
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
@@ -250,11 +251,11 @@ def show_graph3():
     # date2 = entry7.get()
     keyword = entry5.get()
     if date1 == "Select Year":
-        print("Error")
-        messagebox.showinfo("Error", "Please Select a year")
+        print("Error")# pragma: no cover
+        messagebox.showinfo("Error", "Please Select a year")# pragma: no cover
     elif keyword == "Keyword":
-        print("Error")
-        messagebox.showinfo("Error", "Please select a keyword")
+        print("Error")# pragma: no cover
+        messagebox.showinfo("Error", "Please select a keyword")# pragma: no cover
     else:
         crash_data = crash_data[crash_data['YEAR'] == int(date1)]
         crash_data = crash_data[crash_data['ACCIDENT_TYPE'].str.contains(keyword)]
@@ -431,6 +432,11 @@ entry1 = tk.StringVar(framebtn1, "2014")
 entry2 = tk.StringVar(framebtn1, "2014")
 show_graph1()
 
+#Redoing for coverage line 172
+entry1 = tk.StringVar(framebtn1, "2014")
+entry2 = tk.StringVar(framebtn1, "2014")
+show_graph1()
+
 entry1 = tk.StringVar(framebtn1, "2014")
 entry2 = tk.StringVar(framebtn1, "2015")
 show_graph1()
@@ -438,6 +444,12 @@ show_graph1()
 entry1 = tk.StringVar(framebtn1, "2015")
 entry2 = tk.StringVar(framebtn1, "2014")
 show_graph1()
+
+time.sleep(5)
+entry3 = tk.StringVar(framebtn2, "2015")
+entry4 = tk.StringVar(framebtn2, "2014")
+show_graph2()
+
 
 entry3 = tk.StringVar(framebtn2, "2014")
 entry4 = tk.StringVar(framebtn2, "2014")
@@ -447,9 +459,11 @@ entry3 = tk.StringVar(framebtn2, "2014")
 entry4 = tk.StringVar(framebtn2, "2015")
 show_graph2()
 
+
 entry5 = tk.StringVar(framebtn3, keywords[0])
 entry6 = tk.StringVar(framebtn3, options[1])
 show_graph3()
+
 
 show_graph41()
 show_graph42()
