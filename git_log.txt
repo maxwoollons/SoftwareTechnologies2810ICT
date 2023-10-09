@@ -1,3 +1,405 @@
+commit 4a9826453603d505d5b8a3e3005aece42ee69d7f
+Merge: e4f7be5 f1abb14
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Oct 7 17:07:35 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit e4f7be5f1774d128df986dad707439c1fdc6bd0b
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Oct 7 17:07:27 2023 +1000
+
+    created .exe for final
+
+commit f1abb1444c5dc8fae8bfc8edf6b8e0cc5a980141
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Sat Oct 7 14:19:08 2023 +1000
+
+    Updates to coverage test and Software Testing report
+
+commit 0dbabb3dab77e1bf2d3b29d65299249dfa8c3f9b
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Oct 7 13:27:24 2023 +1000
+
+    shortcuts
+
+commit c91b7d623199ba79d58b70f92af855a5f7c18acf
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Sat Oct 7 13:09:26 2023 +1000
+
+    update to main
+
+commit e1c3862df5ce8f824e766a66a8481aa56a711d56
+Merge: 37c678d 7c35c06
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Oct 7 12:34:02 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit 37c678df6f9218aefdd0fda22d2da189f55b5999
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Oct 7 12:33:53 2023 +1000
+
+    changed keyword to input value
+
+commit 7c35c0694f502442ca4b930d3d1088b67328d252
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Sat Oct 7 12:32:55 2023 +1000
+
+    Updates to coverage test and Software Testing Report
+
+commit f7cccf3db835fdc45a5020a610cac5fd30eb6b88
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sat Oct 7 12:12:38 2023 +1000
+
+    Grammatical editing
+
+commit 282ce055d56dda82cb2a1762001fccdc8b704e60
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Sat Oct 7 11:53:40 2023 +1000
+
+    Updating coverage test doc
+
+commit 94f6556d1ee7286215de089a6acae21da1e90a45
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Tue Oct 3 01:17:47 2023 +1000
+
+    Updating unittesting + STR
+
+commit 7f406b357f9e665d49f2e94983cea23a0fe0ed6a
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Mon Oct 2 23:40:17 2023 +1000
+
+    Update to unit test
+
+commit 268ca6f32bd7f93f53230bc076db4ca5c9bfbb29
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Mon Oct 2 20:30:23 2023 +1000
+
+    Updating Unittest
+
+commit 88b10c0b2bf156f4567ce1056b0ea3185677cc88
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Mon Oct 2 01:56:10 2023 +1000
+
+    Updating Software Testing and coverage.py
+    
+    Updated software testing report and coverage test files.
+
+commit e6d1f2f22edc8b28dba137b4973b0a3770e455ac
+Author: kstrepo1 <kail.terepai@griffithuni.edu.au>
+Date:   Mon Oct 2 01:15:28 2023 +1000
+
+    Create coveragetest.py
+
+commit 8cbc59321c16361d1450808f5a0e7463f3623667
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Oct 1 21:08:06 2023 +1000
+
+    Made EXE of new version
+
+commit fd34c246a6146cce674a23ef6c0b3c347182c64a
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Oct 1 20:41:15 2023 +1000
+
+    update code to allow graph in gui
+
+commit 990edf14bff1562eefb9ae4f52d06472a0f69277
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Oct 1 16:34:27 2023 +1000
+
+    Delete assesment directory
+
+commit 0ffaf85d23cdafb6e99037e0f9da13602ddd2fdb
+Author: maxwoollons <maxwoollons@outlook.com>
+Date:   Thu Sep 28 11:56:19 2023 +1000
+
+    pytest update
+
+commit 573d57728846b42970082cb969a48714a1528efc
+Author: maxwoollons <maxwoollons@outlook.com>
+Date:   Thu Sep 28 11:43:35 2023 +1000
+
+    added pytest
+
+commit e0419abfeeb31f8288aed7908da23770cf8f64bd
+Author: kamykazi1 <140568914+kamykazi1@users.noreply.github.com>
+Date:   Thu Sep 28 11:38:48 2023 +1000
+
+    Delete ~$ecutive Summary.docx
+    
+    deleted file added by mistake
+
+commit 27a3af293fc0eccd425f54be173c3cff387533e8
+Author: Reiss <reiss.tooze@griffithuni.edu.au>
+Date:   Thu Sep 28 11:36:52 2023 +1000
+
+    inserted updated gantt chart
+
+commit 920578eceb1a6657646b86484d061419f5e7fd48
+Author: Reiss <reiss.tooze@griffithuni.edu.au>
+Date:   Thu Sep 28 11:29:12 2023 +1000
+
+    Gantt chart edited to reflect actual timeline achieved
+
+commit 78974cc5f05ffb776cfdd18f4e8044728be8401e
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 21 11:51:53 2023 +1000
+
+    Minimising Files and renaming
+    
+    Assesment folder is renamed to ApplicationFiles
+
+commit a96aaabd2cba9db0eb67b23c97da23cf15a7b020
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 21 11:11:37 2023 +1000
+
+    Update README.md
+
+commit f76f817a107ef984364d87f435be17d6b794ff63
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Wed Sep 20 12:50:35 2023 +1000
+
+    Executive summary completed awwwww yeaaahhhhhh
+
+commit ef2af89c74982c879db5e887637dd6d25381908e
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 17 18:47:34 2023 +1000
+
+    Delete ApplicationDocs.docx
+
+commit b55c45df266ec503e95ccb7a7b3200509742604c
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Sep 17 10:03:35 2023 +1000
+
+    User manual
+
+commit 60a6180d6b9bbdfa3b0f92232d23a94697df2649
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 21:54:08 2023 +1000
+
+    added Application Docs
+
+commit 170aa11461c769a38676b8841faaa4c226460058
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:54:07 2023 +1000
+
+    fixed ico error
+
+commit 3a3174f6bf8cb29a062399389fc0a5a21605b371
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:42:32 2023 +1000
+
+    Delete assesment/main.exe
+
+commit 84850f5aaea0026e1b268aeea7b14e13b9c836c6
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:42:00 2023 +1000
+
+    Delete assesment/favicon.ico
+
+commit 82527bf6c948f3b9648a755131e9b0295bfaf0d8
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:41:45 2023 +1000
+
+    Delete assesment/main.spec
+
+commit eace6f1e2e95f8b62ea97ba9408442bc938a1c0d
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:40:51 2023 +1000
+
+    How to run the program
+
+commit 6bdd4aebbd80f8ca4d31c8fd0d46a5cb629a9cb9
+Merge: 94af1a4 2190397
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:35:53 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit 94af1a4779902aeb6443f8d26ab4c38b1c6d1f06
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:35:39 2023 +1000
+
+    .exe and data must be in the same directory
+
+commit 2190397c1c78ad74be1d748e27f3ceaf40e80e09
+Merge: 551901a 707eb84
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sat Sep 16 18:33:01 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit 707eb84ff43ac05ee900a6a7337ad8531a825cf3
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:31:06 2023 +1000
+
+    deleted and regenerated exe
+
+commit 551901a7982110c40a6b8f112b793f4cc8c21ad6
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sat Sep 16 18:28:26 2023 +1000
+
+    Replaced query 3 images
+
+commit 2edecf50d6e74e24e3b9dd654d0d973c6c6e1977
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 16 18:23:50 2023 +1000
+
+    created exe and changed Q3
+
+commit cee8122f9ec06039fc6417575cc8cf9e6f710b24
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Fri Sep 15 11:33:08 2023 +1000
+
+    Added screenshots for queries 3,4,5
+
+commit 8798289d842f83dd6f243d32c52e31e23fde1ea9
+Merge: f58b154 2a871fe
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 14 17:34:12 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit f58b1549ccefca2bb8025f26718e8a6a5c2d9212
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 14 17:33:57 2023 +1000
+
+    GUI and Graph Upgrade
+
+commit 2a871fe5c71919b477e9e2fa33ed97133b71d341
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 9 16:42:42 2023 +1000
+
+    Delete README-LAPTOP-8N5K3GOU.md
+
+commit 038689daf563192222e651be3896148644632245
+Merge: 3778d8e 601f8b4
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 9 10:42:02 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit 3778d8ee021eabf14c9c169286dbe8b26ebdcf76
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sat Sep 9 10:41:44 2023 +1000
+
+    Finished all queries. Just needs bug fix's.
+
+commit 601f8b44300b25d749cc6b2d01bea31ebe263556
+Merge: e3fca96 74a6e9a
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Fri Sep 8 12:13:04 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit e3fca96b41a0e151138285528875e34adc1609c2
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Fri Sep 8 12:12:44 2023 +1000
+
+    Completed the introduction and analysis of query 1 and 2 for the executive summary.
+
+commit 74a6e9aa7fe13bd0caf279fd90ec3a11b3678de6
+Author: kamykazi1 <140568914+kamykazi1@users.noreply.github.com>
+Date:   Fri Sep 8 01:24:28 2023 +0000
+
+    Update README.md
+    
+    Changed wording for query 3 from "user entered" to "user selected".
+
+commit 664b2b8b48f72a91a420d158a61688a1382ab8ab
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Fri Sep 8 11:22:13 2023 +1000
+
+    Added screenshots of query 1 and 2 results
+
+commit 5309d44fc750cf66e1a97a7f724034199c1af65b
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 19:01:24 2023 +1000
+
+    Added 4.1 graph
+
+commit c199c1292875344bfa3d222328a10e5d0c1f00a3
+Merge: add0727 6d9ba63
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 15:25:32 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit add07278880c9857afe4151cbad320becf7119f7
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 15:25:18 2023 +1000
+
+    CondaFileForBackUp
+
+commit 6d9ba635e0addac71370551c02a15d8bfbc0af0a
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 15:22:32 2023 +1000
+
+    Update README.md
+
+commit ae356089950706f7b600b0aba7cb5c7d357c72b1
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 15:20:56 2023 +1000
+
+    Fixed up year selection for graph 1
+
+commit b3c178c141b61b156b53e92c1abaf533a178810a
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 15:18:10 2023 +1000
+
+    Added Graph 3
+
+commit d141f1a8890104a7fd0eeb4e213fcd22ff4809da
+Author: maxwoollons <maxwoollons@outlook.com>
+Date:   Thu Sep 7 12:06:12 2023 +1000
+
+    Need to, fix up year of first input like 2nd one.
+
+commit f9b27d8c693cdaee5dc832cc401f84b9b0fa4474
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 3 22:05:40 2023 +1000
+
+    Fixed up few bugs on the first graph
+
+commit 75f4f1c7fc2c21a39d63afab72fca481d881d5af
+Merge: 1618583 33714eb
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 3 21:40:15 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit 1618583c70e3c3e3ac359751d180b6c00429a60f
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 3 21:40:00 2023 +1000
+
+    Question 1 Pie Chart with selectable years
+
+commit 33714eb0f27fab05d32458464784bca2247860a5
+Merge: f894a6e 11b1a53
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Sep 3 15:37:47 2023 +1000
+
+    Merge branch 'main' of https://github.com/maxwoollons/SoftwareTechnologies2810ICT
+
+commit f894a6eb6f91716da9b97f34f999544f11c84b54
+Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
+Date:   Sun Sep 3 15:37:26 2023 +1000
+
+    log
+
+commit 11b1a5320da2e383a21dd5b0240d3b8a6b9a1896
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 3 14:45:44 2023 +1000
+
+    Jupyter notebook cache
+
+commit 5d564d8005c277b347e82b56fde28dfc59227188
+Author: Max Woollons <maxwoollons@outlook.com>
+Date:   Sun Sep 3 14:44:13 2023 +1000
+
+    Changed up input types
+
 commit f72806a5c6900512e51c723428e45e991161e7d7
 Author: Reiss Tooze <reiss.tooze@griffithuni.edu.au>
 Date:   Sun Sep 3 11:30:01 2023 +1000
